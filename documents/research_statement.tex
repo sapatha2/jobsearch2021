@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref}
+\title{Shivesh Pathak}
+\date{Research Statement}
+\begin{document}
+\maketitle 
+
+I am currently a PhD student at the University of Illinois at Urbana-Champaign working with professor Lucas Wagner on building accurate, interacting, atomic-scale models for condensed matter systems using \textit{ab-initio} quantum Monte Carlo (QMC) simulations and the novel model fitting framework density matrix downfolding (DMD) (Zheng \textit{et al.}, Front. Phys.  (2008))
+My PhD research has been focused on methods development for efficiently and accurately building models, and application of these methods in developing models for single and bi-layer graphene systems.
+Throughout these projects I have become proficient with various \textit{ab-initio} simulation techniques (QMC methods, density functional theory, complete active space methods), and helped develop software packages for both Monte Carlo algorithms and model fitting methods (QWalk in C++, PyQMC in Python) (L.K. Wagner \textit{et al.} J.  Comp.  Phys. (2009), \url{https://github.com/WagnerGroup/pyqmc}).
+Moving forwards, my research goals are focused on further refinement  of model fitting techniques and application to strongly correlated electronic systems.
+The following sections will provide further detail of the PhD research outlined above and my future plans for research in the short and longer time scale.
+
+\section{Undergraduate research}
+During my undergraduate studies at the University of Illinois at Urbana-Champaign, I worked with professor Karin Dahmen on a single project investigating the universality of quake statistics in soft-condensed matter systems.
+In this project,  we studied quake data collected from quake events in nanopillars all the way up to geological earthquakes, spanning a range of $10^{12}$ orders of magnitude (Uhl, \textbf{Pathak}, \textit{et al.}, Nature Sci. Rep. (2015)).
+We found that the energies and magnitudes of these quake events followed a single, universal, power-law scaling function, indicating that indeed quake statistics are scale-invariant and fall formally under a university class.
+While disjoint from my PhD work, this project was a stepping stone into developing the computational analysis and programming skills required for my doctoral research.
+
+\section{PhD research}
+The first two projects I worked on during my PhD research were introductions to the workhorse computational methods I would be using for the latter parts of my PhD, quantum Monte Carlo techniques.
+In my first project, we investigated compact representations of ground state wave functions in QMC, in particular quantifying the benefit of using non-orthogonal orbitals in multi-Slater-Jastrow trial wavefunctions in QMC versus the traditional orthogonal orbitals (\textbf{Pathak}, Wagner,  J. Chem. Phys.  (2018)).
+We compared the total energy of a $C_2$ molecule using both the traditional and novel wave functions, and found that the non-orthogonal orbitals yielded a significant decrease in total energy.
+Recent publications on non-orthogonal configuration interaction have made use of our results (Burton \textit{et al.}, J. Chem. Theory and Comp. (2019, 2020)).
+
+In the process of constructing the wave functions for the first project, we found that certain gradients required in the optimization method had very large statistical variances,  leading to inhibitively long optimization times within QMC.
+This spawned a second methodology focused QMC project, where we identified and suggested a simple and efficient fix to the infinite variance problem in QMC when computing the total energy gradient required for wave function optimization (\textbf{Pathak}, Wagner, AIP Advances (2020)).
+We proved mathematically that this infinite variance problem occurred when optimizing parameters that affected the nodal surface of the wave function, in particular orbital parameters - the parameters we were focused on in the first project.
+We then suggested a simple fix by applying a regularization when computing the gradient in QMC,  proved mathematically that it leads to a finite variance estimate for the gradient, and implemented it and tested it on the CuO molecule.
+Our regularization method lead to a simple fix to a problem which was previous handled by complex methods using auxiliary wave functions, and served well for in the latter projects during my PhD which made heavy use of orbital optimization.
+
+After these heavy QMC methods based projects, my focus shifted towards model development using QMC calculations using the novel DMD method previously developed in Lucas Wagner's group.
+DMD is a method which allows us to use data from \textit{ab-initio} simulations of low-energy states in condensed matter systems, such as energies and density matrices,to fit effective atomic-scale models using statistical methods like least-squared linear regression.
+Integral to this method is the efficient, accurate, and systematic computation of low-energy states: the accuracy of the low-energy states correlates with the accuracy of the fit model,  the more states that can be computed the lower the statistical uncertainty on the fit model, and having a systematic method allows for applications to a broad range of condensed matter systems.
+Prior work with DMD has established that QMC methods serve as efficient and accurate techniques for computation, but no systematic method for computing low-energy states had existed.
+The latter half of my PhD work has revolved around the development of such a systematic QMC method for computing low-energy states, and the application of the method in developing models for graphene based systems.
+
+The systematic method that we developed is a simple extension of standard wave function energy optimization techniques in QMC by including an overlap penalty (\textbf{Pathak} \textit{et al.} J. Chem. Phys. (2020)).
+The method allows us to target the lowest energy wave function with certain overlaps with other wave functions, for example the first excited state is the lowest energy wave function with zero overlap with the ground state, the second excited state is the lowest energy wave function with zero overlap with the ground and first excited state, and so on.
+As such, we can conduct a simple ground state optimization using well established methods, and then use our new penalty based method to construct a tower of low-energy excited states in a systematic fashion that can be applied to any system.
+We went on to apply this method to the benzene molecule, computing the entire $\pi$ active space spectrum, twelve excited states, and found agreement with experiment to 0.2 eV for all twelve states.
+This method then serves as the elusive efficient, accurate, and systematic technique required for DMD.
+
+With the methods finally ironed out, the last two projects I have been working on focus on building an effective model for the novel twisted bi-layer graphene (TBLG) system alongside a large collaboration of various research groups called QMC-High Accuracy Multiscale Models (QMC-HAMM).
+The first project is an investigation of lattice-electronic effects on effective hopping in graphene and bi-layer graphene at the DFT level.
+In this project we use statistical model fitting techniques to develop accurate hopping parameters for single and bi-layer graphene under various forms of lattice deformations.
+The novelty in our work is that we fit each hopping separately, using only the local environment, namely the geometry of nearby atoms, as the independent variables in the fit.
+We have promising results for single layer graphene, with excellent fits using just the local environment for the nearest, next nearest, and next-next nearest neighbor hopping.
+Our hope is to extend this to the bi-layer system, where an accurate hopping model that can account for complex lattice distortions is integral to the understanding of superconductivity in the twisted bi-layer system.
+
+In the latest project, we are focused on developing an accurate, long-range interacting model for single layer graphene.
+Models for single layer graphene with short range interactions already exist in the literature, however, the longer range interactions are important in understanding the subtle interplay of electronic interactions and electronic-lattice effects lead to strongly correlated phases in twisted bi-layer graphene.
+In this project, we will make use of QMC calculations and our penalty based method alongside DMD, a culmination of my research work to date, in order to accurately compute the long-range effective density-density interactions in graphene.
+The long-range effective interactions alongside the lattice-dependent hopping model stands as a significant furthering of our understanding of the effective interactions required to understand the novel phases of TBLG.
+
+\section{Future research plan (generic)}
+My short term research plan is focused on finishing up an accurate Moire-scale model for TBLG.
+The final model should contain effective interactions, hoppings, as well as the effect of lattice distortions, whether due to twists or additional relaxation, on these terms.
+Partitioning this into groups, we have inter-layer interactions and hoppings as well as intra-layer interactions in hoppings.
+In my PhD so far, I have attempted to understand inter-layer and intra-layer hoppings with lattice effects, inter-layer interactions without lattice effects, and have not begun to investigate inter-layer interactions at all.
+This leaves three big steps to be accomplished: 1) Investigate inter-layer interactions without distorting the graphene lattice,  2) investigate intra-layer hoppings with lattice effects, and 3) investigate inter-layer interactions with lattice effects.
+
+First, I would focus on intra-layer interactions in single layer graphene with lattice deformations.
+This is a simpler computation to carry out that the bi-layer systems, and my PhD would be a great and quick springboard into this project.
+The resolution of the project would be lattice dependent effective long-range interactions in graphene.
+With this in hand, we could say quantitatively whether the lattice effects on intra-layer interactions in single layer graphene are required when attempting to model the system at a particular excitation energy scale.
+Extending this to TBLG, we can also conclude whether an effective model for TBLG requires the inter-layer interactions to be lattice dependent or not, but more importantly what effective excluding the lattice dependence would have on the electronic structure of these graphene based systems in a quantitative manner.
+
+Next, I would focus on studying the effective inter-layer interactions in simple bi-layer graphene systems.
+This would be rigid AA stacked graphene,  rigid AB stacked graphene, and rigid SP stacked graphe, the three stackings which describe most of the variation in TBLG.
+I would use the same methods as employed in my PhD project investigating effective interactions in rigid single-layer graphene.
+The end result would be three sets of effective interactions for the three different basic bi-layer coordinations, giving us information about the general magnitude of inter-layer interactions in TBLG and also some information about whether the variation in inter-layer interactions with coordination is relevant to modeling TBLG.
+
+Taking this a step further, we could distort each of the three rigid stackings and develop three different interacting models with lattice deformation dependent interactions and hoppings.
+This would be a direct contribution to resolving the importance of subtle lattice relaxations seen in the AA, AB and SP regions of TBLG on the electronic structure and low-energy excitations.
+We would be able to resolve quite clearly the magnitude of variation with respect to small relaxations in the effective model terms, and then say quantitatively whether an effective model for TBLG at a given energy scale requires inclusion of additional lattice relaxation or not.
+
+Given that TBLG at magic twist angles is primarily AA, AB and SP stacking with small deformations due to relaxation, the only piece of the puzzle left would be the stitching together of these regions and mapping to a Moire-scale model.
+This can be accomplished using DMD on top of the effective models we have created using large-scale tight-binding solvers.
+This methodology already exists (Wang and Nevidomskyy, J. Phys.: Cond. Matt.  (2015)) and our collaborators in QMCHAMM are ready to carry out this higher level of model fitting once our atomic-scale models are prepared.
+
+In the longer term, I am particularly interested in model development for strongly interacting systems using \textit{ab-initio} computational techniques, and envision a two-pronged approach towards building a robust technique for model downfolding. 
+The first prong will be oriented around developing methodology and frameworks for downfolding which are easily usable, and demonstrating the ability of these frameworks in developing interacting models for simpler systems.
+I think developing an easy-to-use framework is essential because it lets us refine our methods and iron our any creases, but also provides a tool that other researchers can use without having to do an entire PhD in my shoes.
+This can accelerate our ability as a scientific community to create models for hosts of materials, in particular materials which are not bleeding edge, but for which effective models can significantly increase computational efficiency.
+These include systems where a single model can be used repeatedly under various pressures, lattice distortions, and temperatures, such as interfacial systems like batteries and semiconducting devices.
+Further, developing a library of models from \textit{ab-initio} calculations for simpler systems like conventional superconductors and magnetic systems alongside the well accepted models in the literature would be an excellent database for learners and engineers who intend to use these materials in composite tasks.
+
+The second prong is more cutting edge, and would involve pushing the methods and frameworks beyond their basic usage to develop models for novel, poorly-understood, strongly-interacting materials.
+This prong would be a theoretical physics research track, and would be oriented around novel materials like TBLG, other stacked heterostructure materials,  high-temperature iron and copper based superconductors, and topological materials.
+In addition to developing effective models for these novel materials, we would be enriching our methods when they likely fail on these complex materials.
+\end{document}
