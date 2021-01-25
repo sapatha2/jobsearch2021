@@ -1,10 +1,29 @@
 \documentclass{article}
 \usepackage[margin=0.5in]{geometry}
 \usepackage{hyperref}
+\usepackage{titling}
+\pretitle{% add some rules
+  \begin{flushleft}
+    \huge\bfseries
+}
+\posttitle{%
+  \end{flushleft}
+}
+\renewcommand\maketitlehooka{%
+	\vspace{-10ex}
+  \noindent\vrule height 2.5pt width \textwidth
+}
+\renewcommand\maketitlehookb{%
+  \begin{flushleft}
+   \Large\bfseries
+    Research Statement
+  \end{flushleft}%
+    \noindent\vrule height 2.5pt width \textwidth
+}
 \title{Shivesh Pathak}
-\date{Research Statement}
+\date{\vspace{-10ex}}
 \begin{document}
-\maketitle 
+\maketitle
 
 I am currently a PhD student at the University of Illinois at Urbana-Champaign working with professor Lucas Wagner on building accurate, interacting, atomic-scale models for condensed matter systems using \textit{ab-initio} quantum Monte Carlo (QMC) simulations and the novel model fitting framework density matrix downfolding (DMD) (Zheng \textit{et al.}, Front. Phys.  (2008))
 My PhD research has been focused on methods development for efficiently and accurately building models, and application of these methods in developing models for single and bi-layer graphene systems.
