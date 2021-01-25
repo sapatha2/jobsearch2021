@@ -8,8 +8,8 @@
 
 I am currently a PhD student at the University of Illinois at Urbana-Champaign working with professor Lucas Wagner on building accurate, interacting, atomic-scale models for condensed matter systems using \textit{ab-initio} quantum Monte Carlo (QMC) simulations and the novel model fitting framework density matrix downfolding (DMD) (Zheng \textit{et al.}, Front. Phys.  (2008))
 My PhD research has been focused on methods development for efficiently and accurately building models, and application of these methods in developing models for single and bi-layer graphene systems.
-Throughout these projects I have become proficient with various \textit{ab-initio} simulation techniques (QMC methods, density functional theory, complete active space methods), and helped develop software packages for both Monte Carlo algorithms and model fitting methods (QWalk in C++, PyQMC in Python) (L.K. Wagner \textit{et al.} J.  Comp.  Phys. (2009), \url{https://github.com/WagnerGroup/pyqmc}).
-Moving forwards, my research goals are focused on further refinement  of model fitting techniques and application to strongly correlated electronic systems.
+Throughout these projects I have become proficient with \textit{ab-initio} simulation techniques (QMC methods, density functional theory, complete active space methods), and helped develop software packages for both Monte Carlo algorithms and model fitting methods (QWalk in C++, PyQMC in Python) (L.K. Wagner \textit{et al.} J.  Comp.  Phys. (2009), \url{https://github.com/WagnerGroup/pyqmc}).
+My research goals are focused on further refinement  of model fitting techniques and application to strongly correlated electronic systems.
 The following sections will provide further detail of the PhD research outlined above and my future plans for research in the short and longer time scale.
 
 \section{Undergraduate research}
@@ -30,7 +30,7 @@ We proved mathematically that this infinite variance problem occurred when optim
 We then suggested a simple fix by applying a regularization when computing the gradient in QMC,  proved mathematically that it leads to a finite variance estimate for the gradient, and implemented it and tested it on the CuO molecule.
 Our regularization method lead to a simple fix to a problem which was previous handled by complex methods using auxiliary wave functions, and served well for in the latter projects during my PhD which made heavy use of orbital optimization.
 
-After these heavy QMC methods based projects, my focus shifted towards model development using QMC calculations using the novel DMD method previously developed in Lucas Wagner's group.
+After these QMC methods based projects, my focus shifted towards model development using QMC calculations using the novel DMD method previously developed in Lucas Wagner's group.
 DMD is a method which allows us to use data from \textit{ab-initio} simulations of low-energy states in condensed matter systems, such as energies and density matrices,to fit effective atomic-scale models using statistical methods like least-squared linear regression.
 Integral to this method is the efficient, accurate, and systematic computation of low-energy states: the accuracy of the low-energy states correlates with the accuracy of the fit model,  the more states that can be computed the lower the statistical uncertainty on the fit model, and having a systematic method allows for applications to a broad range of condensed matter systems.
 Prior work with DMD has established that QMC methods serve as efficient and accurate techniques for computation, but no systematic method for computing low-energy states had existed.
@@ -42,14 +42,14 @@ As such, we can conduct a simple ground state optimization using well establishe
 We went on to apply this method to the benzene molecule, computing the entire $\pi$ active space spectrum, twelve excited states, and found agreement with experiment to 0.2 eV for all twelve states.
 This method then serves as the elusive efficient, accurate, and systematic technique required for DMD.
 
-With the methods finally ironed out, the last two projects I have been working on focus on building an effective model for the novel twisted bi-layer graphene (TBLG) system alongside a large collaboration of various research groups called QMC-High Accuracy Multiscale Models (QMC-HAMM).
+With the methods finally ironed out, the last two projects I have been working on focus on building an effective model for the novel twisted bi-layer graphene (TBLG) system as part of a large collaboration of various research groups called QMC-High Accuracy Multiscale Models (QMC-HAMM).
 The first project is an investigation of lattice-electronic effects on effective hopping in graphene and bi-layer graphene at the DFT level.
 In this project we use statistical model fitting techniques to develop accurate hopping parameters for single and bi-layer graphene under various forms of lattice deformations.
-The novelty in our work is that we fit each hopping separately, using only the local environment, namely the geometry of nearby atoms, as the independent variables in the fit.
-We have promising results for single layer graphene, with excellent fits using just the local environment for the nearest, next nearest, and next-next nearest neighbor hopping.
-Our hope is to extend this to the bi-layer system, where an accurate hopping model that can account for complex lattice distortions is integral to the understanding of superconductivity in the twisted bi-layer system.
+The novelty in our work is that we fit each hopping separately, using only the local environment, namely the geometry of nearby atoms, as the independent variables in the fit, moving beyond the simple distance-based approaches like Slater-Koster (Pereira and Neta, PRB (2009)).
+We have results for single layer graphene, with excellent fits using just the local environment for the nearest, next nearest, and next-next nearest neighbor hopping.
+Our next step is extending this to the bi-layer system, where an accurate hopping model that can account for complex lattice distortions is integral to the understanding of superconductivity in the twisted bi-layer system.
 
-In the latest project, we are focused on developing an accurate, long-range interacting model for single layer graphene.
+In the second project, we are focused on developing an accurate, long-range interacting model for single layer graphene.
 Models for single layer graphene with short range interactions already exist in the literature, however, the longer range interactions are important in understanding the subtle interplay of electronic interactions and electronic-lattice effects lead to strongly correlated phases in twisted bi-layer graphene.
 In this project, we will make use of QMC calculations and our penalty based method alongside DMD, a culmination of my research work to date, in order to accurately compute the long-range effective density-density interactions in graphene.
 The long-range effective interactions alongside the lattice-dependent hopping model stands as a significant furthering of our understanding of the effective interactions required to understand the novel phases of TBLG.
