@@ -25,61 +25,62 @@
 \begin{document}
 \maketitle
 
-I am currently a PhD student at the University of Illinois at Urbana-Champaign working with professor Lucas Wagner on building accurate, interacting, atomic-scale models for condensed matter systems using \textit{ab-initio} quantum Monte Carlo (QMC) simulations and the novel model fitting framework density matrix downfolding (DMD) (Zheng \textit{et al.}, Front. Phys.  (2008)).
-My PhD research has been focused on methods development for efficiently and accurately building models, and application of these methods in developing models for single and bi-layer graphene systems.
-Throughout these projects I have become proficient with \textit{ab-initio} simulation techniques (QMC methods, density functional theory, complete active space methods), and helped develop software packages for both Monte Carlo algorithms and model fitting methods (QWalk in C++, PyQMC in Python) (L.K. Wagner \textit{et al.} J.  Comp.  Phys. (2009), \url{https://github.com/WagnerGroup/pyqmc}).
-My research goals are focused on further refinement  of model fitting techniques and application to strongly correlated electronic systems with competing low-energy degrees of freedom.
+I am currently a PhD student at the University of Illinois at Urbana-Champaign working with professor Lucas Wagner on building accurate, interacting, atomic-scale models for condensed matter systems using \textit{ab initio} quantum Monte Carlo (QMC) simulations and the novel model fitting framework density matrix downfolding (DMD) (Zheng \textit{et al.}, Front. Phys.  (2008)).
+My PhD research has been focused on methods development for efficiently and accurately building models, and application of these methods in developing models for single and bilayer graphene systems.
+Throughout these projects I have become proficient with \textit{ab initio} simulation techniques (QMC methods, density functional theory, complete active space methods), and helped develop software packages for both Monte Carlo algorithms and model fitting methods (QWalk in C++, PyQMC in Python) (L.K. Wagner \textit{et al.} J.  Comp.  Phys. (2009), \url{https://github.com/WagnerGroup/pyqmc}).
+My research goals are focused on refinement of model fitting techniques and application to strongly correlated electronic systems with competing low-energy degrees of freedom.
 The following sections will provide further detail of the PhD research outlined above and my future plans for research in the short and longer time scales.
 
 \section{Undergraduate research}
 During my undergraduate studies at the University of Illinois at Urbana-Champaign, I worked with professor Karin Dahmen on a single project investigating the universality of quake statistics in soft-condensed matter systems.
 In this project,  we studied quake data collected from quake events in nanopillars all the way up to geological earthquakes, spanning a range of $10^{12}$ orders of magnitude (Uhl, \textbf{Pathak}, \textit{et al.}, Nature Sci. Rep. (2015)).
 We found that the energies and magnitudes of these quake events followed a single, universal, power-law scaling function, indicating that quake statistics are scale-invariant and fall formally under a university class.
-While disjoint from my PhD work, this project was a stepping stone into developing the computational analysis and programming skills required for my doctoral research.
+This project was a stepping stone into developing the computational analysis and programming skills required for my doctoral research.
 
 \section{PhD research}
 The first two projects I worked on during my PhD research were introductions to the workhorse computational methods I would be using for the latter parts of my PhD, quantum Monte Carlo techniques.
 In my first project, we investigated compact representations of ground state wave functions in QMC,  quantifying the benefit of using non-orthogonal orbitals in multi-Slater-Jastrow trial wavefunctions in QMC versus the traditional orthogonal orbitals (\textbf{Pathak}, Wagner,  J. Chem. Phys.  (2018)).
-We compared the total energy of a $C_2$ molecule using both the traditional and novel wave functions, and found that the non-orthogonal orbitals yielded a significant decrease in total energy.
+We computed the total energy of a $C_2$ molecule using both the orthogonal and non-orthogonal orbitals and found that the non-orthogonal orbitals yielded a significant decrease in total energy.
 Recent publications on non-orthogonal configuration interaction have made use of our results (Burton \textit{et al.}, J. Chem. Theory and Comp. (2019, 2020)).
 
 In the process of constructing the wave functions for the first project, we found that certain gradients required in the optimization method had very large statistical variances,  leading to inhibitively long optimization times within QMC.
 This infinite variance problem spawned a second methodology focused QMC project, where we identified and suggested a simple and efficient fix to the infinite variance problem in QMC when computing the total energy gradient required for wave function optimization (\textbf{Pathak}, Wagner, AIP Advances (2020)).
-We proved mathematically that this infinite variance problem occurred when optimizing parameters that affected the nodal surface of the wave function, in particular orbital parameters - the parameters we were focused on in the first project.
+We showed that this infinite variance problem occurred when optimizing parameters that affected the nodal surface of the wave function, in particular orbital parameters - the parameters we were focused on in the first project.
 We then suggested a simple fix by applying a regularization when computing the gradient in QMC,  proved mathematically that it leads to a finite variance estimate for the gradient, and implemented it and tested it on the CuO molecule.
-Our regularization method lead to a simple fix to a problem which was previous handled by complex methods using auxiliary wave functions, and served well for in the latter projects during my PhD which made heavy use of orbital optimization.
+Our regularization method lead to a simple solution to a problem which was previously handled by complex methods using auxiliary wave functions, and served well for in the latter projects during my PhD which made heavy use of orbital optimization.
 
 After these QMC methods based projects, my focus shifted towards model development using QMC calculations and the novel DMD method previously developed in Lucas Wagner's group.
-DMD is a method which allows us to use data from \textit{ab-initio} simulations of low-energy states in condensed matter systems, such as energies and density matrices,to fit effective atomic-scale models using statistical methods like least-squared linear regression.
+DMD is a method which allows us to use total energies and density matrices computed from \textit{ab initio} simulations of low-energy states in condensed matter systems to fit effective atomic-scale models using statistical regression techniques.
 Integral to this method is the efficient, accurate, and systematic computation of low-energy states: the accuracy of the low-energy states correlates with the accuracy of the fit model,  the more states that can be computed the lower the statistical uncertainty on the fit model, and having a systematic method allows for applications to a broad range of condensed matter systems.
 Prior work with DMD has established that QMC methods serve as efficient and accurate techniques for computation, but no systematic method for computing low-energy states had existed.
 The latter half of my PhD work has revolved around the development of such a systematic QMC method for computing low-energy states, and the application of the method in developing models for graphene based systems.
 
-The systematic method that we developed is a simple extension of standard wave function energy optimization techniques in QMC by including an overlap penalty (\textbf{Pathak} \textit{et al.} J. Chem. Phys. (2020)).
-The method allows us to target the lowest energy wave function with certain overlaps with other wave functions, for example the first excited state is the lowest energy wave function with zero overlap to the ground state, the second excited state is the lowest energy wave function with zero overlap to the ground and first excited states, and so on.
-As such, we can conduct a simple ground state optimization using well established methods, and then use our new penalty based method to construct a tower of low-energy excited states in a systematic fashion that can be applied to any system.
+The systematic method that we developed is an extension of standard wave function energy optimization techniques in QMC by including an overlap penalty (\textbf{Pathak} \textit{et al.} J. Chem. Phys. (2020)).
+The method allows us to target the lowest energy wave function with specified overlaps with other wave functions.
+For example, the first excited state is computed by targeting the lowest energy wave function with zero overlap to the ground state, the second excited state as the lowest energy wave function with zero overlap to the ground and first excited states, and so on.
+As such, we can conduct a ground state optimization using well established methods, and then use our new penalty based method to construct a tower of low-energy excited states in a systematic fashion that can be applied to any system.
 We went on to apply this method to the benzene molecule, computing the entire $\pi$ active space spectrum, twelve excited states, and found agreement with experiment to 0.2 eV for all twelve states.
-This method then serves as the efficient, accurate, and systematic technique required for DMD.
+The penalty-based method we developed clearly serves as an efficient, accurate, and systematic technique required for computing low-energy states for DMD.
 
-With the methods finally ironed out, the last two projects I have been working on focus on building an effective model for the novel twisted bi-layer graphene (TBLG) system as part of a large collaboration of various research groups called QMC-High Accuracy Multiscale Models (QMC-HAMM).
-The first project is an investigation of lattice-electronic effects on effective hopping in graphene and bi-layer graphene at the DFT level.
+With the methods finally ironed out, the last two projects I have been working towards focus on building an effective model for the novel twisted bilayer graphene (TBLG) system as part of a large collaboration of various research groups called QMC-High Accuracy Multiscale Models (QMC-HAMM).
+The first project is an investigation of lattice-electronic effects on effective hopping in graphene and bilayer graphene at the DFT level.
 An accurate model for the lattice-electronic effects is essential to understanding many-body effects in TBLG as the electronic structure of the system depends sensitively on the variation of the effective hopping during structural relaxation (Nam and Koshino, PRB (2017)).
-In this project we use statistical model fitting techniques to develop accurate hopping parameters for single and bi-layer graphene under various forms of lattice deformations.
+In this project we use statistical model fitting techniques, like LASSO and Orthogonal Matching Pursuit, to develop accurate hopping parameters for single and bilayer graphene under lattice deformations.
 The novelty in our work is that we fit each hopping separately, using only the local environment, namely the geometry of nearby atoms, as the independent variables in the fit, moving beyond the simple distance-based approaches like Slater-Koster (Pereira and Neta, PRB (2009)).
 We have results for single layer graphene, with excellent fits using just the local environment for the nearest, next nearest, and next-next nearest neighbor hopping.
-Our next step is extending this to the bi-layer system.
+Our next step is extending this to the bilayer system.
 
 In the second project, we are focused on developing an accurate, long-range interacting model for single layer graphene.
-Models for single layer graphene with short range interactions already exist in the literature, however, the longer range interactions are important in understanding the subtle interplay of electronic interactions and electronic-lattice effects lead to strongly correlated phases in twisted bi-layer graphene.
+Models for single layer graphene with short range interactions already exist in the literature, however, the longer range interactions are important in understanding the subtle interplay of electronic interactions and electronic-lattice effects lead to strongly correlated phases in twisted bilayer graphene.
 In this project, we will make use of QMC calculations and our penalty based method alongside DMD, a culmination of my research work to date, in order to accurately compute the long-range effective density-density interactions in graphene.
 The long-range effective interactions alongside the lattice-dependent hopping model stands as a significant step towards our understanding of the effective interactions in TBLG.
 
 \section{Future research}
 I am interested in studying strongly correlated electron systems with co-existing low-energy degrees of freedom using effective models.
-By co-existing low-energy degrees of freedom I am referring to systems where the low-energy physics cannot be described by just a single degree of freedom such as (effective) electrons, phonons, or spins, but requires equal treatment of more than one of these as well as their interaction to understand the low-energy excitations of the system.
+Systems with co-existing low-energy degrees of freedom require multiple effective degrees of freedom and their interactions to accurately describe the low-energy physics.
+Typical effective degrees of freedom are effective electrons, phonons, and spins.
 These kinds of systems have been in the spotlight of condensed matter physics for some time now, spurring the development of fields like straintronics, accelerating the study of heterostructures like TBLG, and continuing the search for the elusive room-temperature superconductor.
-Model Hamiltonians are a useful way to understand these systems as they give explicit mathematical forms to the effective degrees of freedom, direct linkage of the effective degrees of freedom to the \textit{ab-initio} degrees of freedom, and can help us abstract away the peculiarities of specific materials and instead focus on general principles of effective interactions that lead to certain material properties.
-Given that my PhD was focused on developing and using a model fitting method that treats the above degrees of freedom on equal footing, I believe my skill set will help me succeed in this goal.
+Model Hamiltonians are a useful way to understand these systems as they give explicit mathematical forms to the effective degrees of freedom, direct linkage of the effective degrees of freedom to the \textit{ab initio} degrees of freedom, and can help us abstract away the peculiarities of specific materials and instead focus on general principles of effective interactions that lead to certain material properties.
 In the following three paragraphs, I will list three possible systems that I am interested in looking at in particular during my postdoc studies, in order of increasing difficulty for myself, but I am open to any other systems like them.
 I will follow this with a paragraph on my longer term goals in academia.
 
@@ -88,7 +89,7 @@ Striantronics is a relatively new field of condensed matter physics and material
 This has wide ranging engineering applications as even small mechanical strains can be used to finely tune electronic gaps, lending itself to new-age transistor technology.
 Graphene is a key material in the field of straintronics and has been heavily studied with respect to applied strain.
 Theoretically, however, studies have been restricted to non-interacting models of graphene, where the interaction between hopping and strain has been investigated.
-Missing is the same investigation for electronic interactions in graphene,  and their variation with applied strain. 
+Missing is the same investigation for electronic interactions in graphene,  and these interactions variations with applied strain. 
 My goal here would be to extend my PhD work on long-range interactions in graphene to long-range interactions in graphene with lattice deformations, a direct study of electron-phonon interaction in a material of great interest to physicists and engineers.
 
 The second set of systems I am interested in are condensed matter spin-qubit systems.
@@ -96,16 +97,16 @@ These materials, like crystals of vanadyl-based molecular qubits (Lunghi and San
 Engineering longer cohering qubits is a long standing issue inhibiting the growth of quantum computing hardware.
 Studies on these materials of the spin-phonon coupling, however, have been limited to single particle approximate techniques like density functional theory with perturbative corrections for the phonon effects.
 While useful in their own right, these materials are ripe for study with many-body methods like QMC and model development techniques like DMD which treat the effective spins and phonons on equal footing.
-As such, I think developing models for these transition-metal condensed spin-1/2 qubit systems would match my interests and be of great interest to the field of quantum computing.
+Developing models for these transition-metal condensed spin-1/2 qubit systems would match my interests and be of great interest to the field of quantum computing.
 
 Lastly, there are the high-temperature superconducting cuprate systems.
 These superconductors boast some of the highest transition temperatures of all materials without the need for extreme pressure environments.
-However, the effective interactions in these systems are very poorly understood, except for some insights on the low-energy degrees of freedom.
+However, the effective interactions in these systems are very poorly understood, except for some insights on possible low-energy degrees of freedom.
 For example, the optimally doped cuprates exhibit both localized spin degrees of freedom as well as free electronic degrees of freedom (Lee \textit{et al.}, Rev. Mod. Phys. (2006)).
 The additional phase transitions seen between anti-ferromagnetic, superconducting, metallic and pseudogapped phases are accompanied by lattice relaxation and sometimes lattice transitions, indicating a role of the lattice as well.
 As such, these systems boast a three-part interaction between effective spin, electronic, and lattice degrees of freedom.
 While a very challenging goal,  just studying the effective spin-electronic interactions at the optimally doped phase would be an excellent contribution to the study of these systems.
-I believe methods like QMC and DMD are well suited for this task, since they can treat the system in a fully many-body and treat all effective degrees of freedom on equal footing.
+Methods like QMC and DMD are well suited for this task, since they can treat the system in a fully many-body and treat all effective degrees of freedom on equal footing.
 
 Once I have established my own research group, I wish to generalize the specific effective models of systems with co-existing low-energy degrees of freedom to broader statements about the relationship between effective low-energy degrees of freedom and observed material properties.
 I will accomplish this with a two-pronged approach.
